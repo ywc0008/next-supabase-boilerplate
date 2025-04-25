@@ -19,6 +19,7 @@
 		"enabled": true
 	},
 	"linter": {
+		"ignore": ["src/utils/supabase"],
 		"enabled": true,
 		"rules": {
 			"recommended": true

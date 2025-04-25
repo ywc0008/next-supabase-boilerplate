@@ -7,7 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "biome lint --write src",
-		"format": "biome format --write src"
+		"format": "biome format --write src",
+		"update-supabase-types": "npx supabase gen types typescript --project-id dtprozjgmevmtjofkhdk --schema public --schema graphql_public --schema realtime --schema storage > ./src/types/supabase.database.ts"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.0.1",
