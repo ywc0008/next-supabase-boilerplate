@@ -39,7 +39,7 @@ export async function signInWithOauthAction(provider: Provider): Promise<SignInW
 	const { data, error } = await supabase.auth.signInWithOAuth({
 		provider,
 		options: {
-			redirectTo: "http://localhost:3000/auth/callback",
+			redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/auth/callback`,
 			queryParams: {
 				prompt: "select_account",
 			},
@@ -59,7 +59,7 @@ export async function signInWithOauthAction(provider: Provider): Promise<SignInW
 	};
 }
 
-export async function signOut() {
+export async function signOutAction() {
 	const supabase = await createClient();
 
 	const { error } = await supabase.auth.signOut();

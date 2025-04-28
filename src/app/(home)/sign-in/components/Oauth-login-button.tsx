@@ -28,22 +28,19 @@ export default function OauthLoginButton({ provider, isDisabled = false, onLogin
 			onLoginStart();
 		}
 
-		setTimeout(() => {
-			startTransition(async () => {
-				const { result, item, message } = await signInWithOauthAction(provider);
+		startTransition(async () => {
+			const { result, item, message } = await signInWithOauthAction(provider);
 
-				console.log("item", item);
-				console.log("result", result);
-				console.log("message", message);
-
-				if (!result) {
-					toast.error(message);
+			if (!result) {
+				toast.error(message);
+			} else {
+				if (item.url) {
+					window.location.href = item.url;
 				} else {
-					toast.success("Sign in successful");
-					router.push("/");
+					toast.error("인증 URL이 제공되지 않았습니다.");
 				}
-			});
-		}, 10);
+			}
+		});
 	};
 
 	return (
